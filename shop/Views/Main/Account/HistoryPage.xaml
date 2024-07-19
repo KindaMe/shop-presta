@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fas="clr-namespace:shop.Helpers.FontAwesome.Solid"
+             xmlns:viewModels="clr-namespace:shop.ViewModels"
+             x:Class="shop.Views.Main.Account.HistoryPage"
+             x:DataType="viewModels:HistoryViewModel"
+             Title="{Binding Title }">
+    <ContentPage.Content>
+        <RefreshView Margin="20"
+                     IsRefreshing="{Binding IsRefreshing}"
+                     Command="{Binding RefreshCommand}">
+            <CollectionView EmptyView="Pusto!"
+                            ItemSizingStrategy="MeasureFirstItem"
+                            ItemsSource="{Binding Orders}">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HistoryViewModel}}, Path=GoToDetailsCommand}" />
+                            </Border.GestureRecognizers>
+                            <Grid RowDefinitions="auto,auto">
+
+                                <Label Text="12-12-2012 12:12:12"
+                                       Background="{StaticResource Accent}"
+                                       TextColor="{StaticResource DarkText}"
+                                       Padding="15,0" />
+
+                                <Grid Padding="15" ColumnSpacing="10" ColumnDefinitions="23,*,auto,10" Grid.Row="1">
+                                    <Image>
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="FAS"
+                                                             Glyph="{x:Static fas:Icon.ShoppingBasket}"
+                                                             Color="{StaticResource Accent}" />
+                                        </Image.Source>
+                                    </Image>
+
+                                    <Label Grid.Column="1"
+                                           Text="{Binding .}" />
+
+                                    <Label Grid.Column="2"
+                                           Text="25.99 PLN" />
+
+                                    <Image Grid.Column="3">
+
+                                        <Image.Source>
+                                            <FontImageSource FontFamily="FAS"
+                                                             Glyph="{x:Static fas:Icon.AngleRight}"
+                                                             Color="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}" />
+                                        </Image.Source>
+                                    </Image>
+                                </Grid>
+
+                            </Grid>
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </ContentPage.Content>
+</ContentPage>

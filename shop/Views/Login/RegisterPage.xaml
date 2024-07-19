@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:shop.ViewModels"
+             x:DataType="viewModels:RegisterViewModel"
+             x:Class="shop.Views.Login.RegisterPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto,auto,auto,auto"
+              VerticalOptions="Center"
+              RowSpacing="15"
+              Padding="25">
+            <Entry Placeholder="Imię" />
+            <Entry Grid.Row="1" Placeholder="Nazwisko" />
+            <Entry Grid.Row="2" Placeholder="Email" />
+            <Entry Grid.Row="3" Placeholder="Hasło" />
+            <Button Grid.Row="4" Text="Zarejestruj" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

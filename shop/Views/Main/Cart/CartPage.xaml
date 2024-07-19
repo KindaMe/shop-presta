@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:shop.ViewModels"
+             xmlns:fas="clr-namespace:shop.Helpers.FontAwesome.Solid"
+             xmlns:far="clr-namespace:shop.Helpers.FontAwesome.Regular"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             x:Class="shop.Views.Main.Cart.CartPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid RowDefinitions="*,auto"
+              Margin="20"
+              RowSpacing="20">
+
+            <CollectionView EmptyView="Pusto!"
+                            ItemSizingStrategy="MeasureFirstItem">
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Item 1</x:String>
+                        <x:String>Item 2</x:String>
+                        <x:String>Item 3</x:String>
+                        <x:String>Item 4</x:String>
+                        <x:String>Item 5</x:String>
+                        <x:String>Item 6</x:String>
+                        <x:String>Item 7</x:String>
+                        <x:String>Item 8</x:String>
+                        <x:String>Item 9</x:String>
+                        <x:String>Item 10</x:String>
+                        <x:String>Item 11</x:String>
+                        <x:String>Item 12</x:String>
+                        <x:String>Item 13</x:String>
+                        <x:String>Item 14</x:String>
+                        <x:String>Item 15</x:String>
+                    </x:Array>
+                </CollectionView.ItemsSource>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:CartViewModel}}, Path=GoToItemDetailsCommand}">
+                                </TapGestureRecognizer>
+                            </Border.GestureRecognizers>
+                            <Grid ColumnDefinitions="100,*"
+                                  HeightRequest="100">
+
+                                <Image Source="dotnet_bot.png"
+                                       Margin="0" />
+
+                                <Grid Grid.Column="1"
+                                      Padding="10"
+                                      RowDefinitions="auto,*">
+                                    <Grid RowDefinitions="auto,auto"
+                                          ColumnDefinitions="*,auto">
+                                        <Label Text="{Binding .}"
+                                               FontAttributes="Bold" />
+                                        <Label Text="sub text"
+                                               Grid.Row="1"
+                                               Style="{StaticResource Footer}" />
+                                        <ImageButton Grid.RowSpan="2"
+                                                     Grid.Column="1"
+                                                     WidthRequest="38" HeightRequest="30">
+                                            <Image.Source>
+                                                <FontImageSource FontFamily="FAR"
+                                                                 Glyph="{x:Static far:Icon.Heart}"
+                                                                 Color="{StaticResource Red}" />
+                                            </Image.Source>
+                                        </ImageButton>
+                                    </Grid>
+
+                                    <Grid Grid.Row="2"
+                                          ColumnDefinitions="*,auto">
+                                        <Label VerticalOptions="Center">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="25.99 PLN"
+                                                          FontAttributes="Bold" />
+                                                    <Span Text=" X " />
+                                                    <Span BindingContext="{x:Reference StepperThingy}"
+                                                          Text="{Binding Value}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <Stepper Grid.Column="1"
+                                                 WidthRequest="76"
+                                                 Minimum="0"
+                                                 Value="1"
+                                                 x:Name="StepperThingy" />
+                                    </Grid>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Grid Grid.Row="1"
+                  ColumnDefinitions="*,*">
+                <Label VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Do zapłaty:" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span Text="269.99 PLN"
+                                  FontAttributes="Bold" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Grid.Column="1"
+                        Text="Zamów"
+                        Command="{Binding GoToCheckoutCommand }" />
+                <Border BackgroundColor="Transparent" Grid.ColumnSpan="2" Padding="0" Margin="-1"/>
+            </Grid>
+
+        </Grid>
+
+
+    </ContentPage.Content>
+</ContentPage>

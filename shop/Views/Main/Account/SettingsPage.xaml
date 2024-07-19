@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fas="clr-namespace:shop.Helpers.FontAwesome.Solid"
+             xmlns:viewModels="clr-namespace:shop.ViewModels"
+             x:DataType="viewModels:SettingsViewModel"
+             x:Class="shop.Views.Main.Account.SettingsPage"
+             Title="{Binding Title}">
+    <ContentPage.Resources>
+        <ControlTemplate x:Key="RadioButtonTemplate">
+            <Border Stroke="{StaticResource Accent}"
+                    StrokeThickness="3"
+                    StrokeShape="RoundRectangle 8"
+                    BackgroundColor="{AppThemeBinding Light={StaticResource LmItemBackground}, Dark={StaticResource DmItemBackground}}"
+                    HeightRequest="90"
+                    WidthRequest="90"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Start">
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CheckedStates">
+                            <VisualState x:Name="Checked">
+                                <VisualState.Setters>
+                                    <Setter Property="Stroke" Value="{StaticResource Accent}" />
+                                    <Setter TargetName="check" Property="Opacity" Value="1" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Unchecked">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor"
+                                            Value="{AppThemeBinding Light={StaticResource LmItemBackground}, Dark={StaticResource DmItemBackground}}" />
+                                    <Setter Property="Stroke" Value="#F3F2F1" />
+                                    <Setter TargetName="check" Property="Opacity" Value="0" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </VisualStateManager.VisualStateGroups>
+                <Grid Margin="4"
+                      WidthRequest="90">
+                    <Grid Margin="0,0,4,0"
+                          WidthRequest="18"
+                          HeightRequest="18"
+                          HorizontalOptions="End"
+                          VerticalOptions="Start">
+                        <Ellipse Stroke="{StaticResource Accent}"
+                                 Fill="White"
+                                 WidthRequest="16"
+                                 HeightRequest="16"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                        <Ellipse x:Name="check"
+                                 Fill="{StaticResource Accent}"
+                                 WidthRequest="8"
+                                 HeightRequest="8"
+                                 HorizontalOptions="Center"
+                                 VerticalOptions="Center" />
+                    </Grid>
+                    <ContentPresenter />
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="ControlTemplate"
+                    Value="{StaticResource RadioButtonTemplate}" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+
+        <Grid RowDefinitions="auto,auto"
+              RowSpacing="10"
+              VerticalOptions="Start"
+              Padding="20">
+
+            <!-- <Border Padding="15"> -->
+            <!--     <Border.GestureRecognizers> -->
+            <!--         ~1~ <TapGestureRecognizer Command="{Binding GoToAddressCommand }" /> @1@ -->
+            <!--     </Border.GestureRecognizers> -->
+            <!--     <Grid ColumnDefinitions="*,auto"> -->
+            <!--         <Label Text="Motyw" -->
+            <!--                VerticalOptions="Center" /> -->
+            <!--         <Image Grid.Column="1"> -->
+            <!--             <Image.Source> -->
+            <!--                 <FontImageSource FontFamily="FAS" -->
+            <!--                                  Glyph="{x:Static fontAwesome:FontAwesomeIcons.AngleRight}" -->
+            <!--                                  Color="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}" /> -->
+            <!--             </Image.Source> -->
+            <!--         </Image> -->
+            <!--     </Grid> -->
+            <!-- </Border> -->
+
+            <Grid Grid.Row="1"
+                  ColumnDefinitions="*,Auto,Auto,Auto,*"
+                  ColumnSpacing="10"
+                  RadioButtonGroup.GroupName="ThemeGroup"
+                  RowDefinitions="Auto,Auto"
+                  RowSpacing="10">
+                <RadioButton
+                    x:Name="RadioButtonSystem"
+                    Grid.Column="1"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Value="System">
+                    <RadioButton.Content>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image Scale="0.75">
+                                <Image.Source>
+                                    <FontImageSource FontFamily="FAS"
+                                                     Glyph="{x:Static fas:Icon.UserCog}"
+                                                     Color="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}" />
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Systemowy"
+                                   TextColor="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="12" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton
+                    x:Name="RadioButtonLight"
+                    Grid.Column="2"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Value="Light">
+                    <RadioButton.Content>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image Scale="0.75">
+                                <Image.Source>
+                                    <FontImageSource FontFamily="FAS"
+                                                     Glyph="{x:Static fas:Icon.Sun}"
+                                                     Color="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}" />
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Jasny"
+                                   TextColor="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="12" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+                <RadioButton
+                    x:Name="RadioButtonDark"
+                    Grid.Column="3"
+                    CheckedChanged="RadioButton_CheckedChanged"
+                    Value="Dark">
+                    <RadioButton.Content>
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <Image Scale="0.75">
+                                <Image.Source>
+                                    <FontImageSource FontFamily="FAS"
+                                                     Glyph="{x:Static fas:Icon.Moon}"
+                                                     Color="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}" />
+                                </Image.Source>
+                            </Image>
+                            <Label Text="Ciemny"
+                                   TextColor="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}"
+                                   HorizontalTextAlignment="Center"
+                                   FontSize="12" />
+                        </StackLayout>
+                    </RadioButton.Content>
+                </RadioButton>
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

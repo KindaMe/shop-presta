@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:shop.ViewModels"
+             xmlns:fas="clr-namespace:shop.Helpers.FontAwesome.Solid"
+             xmlns:fab="clr-namespace:shop.Helpers.FontAwesome.Brands"
+             x:DataType="viewModels:PaymentMethodsViewModel"
+             x:Class="shop.Views.Main.Account.PaymentMethodsPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem>
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.Plus}"
+                                 Size="25"
+                                 Color="{StaticResource LightText}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+
+        <CollectionView EmptyView="Pusto!"
+                        Margin="20"
+                        ItemSizingStrategy="MeasureFirstItem">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical"
+                                   ItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>12** **** **** **34</x:String>
+                    <x:String>56** **** **** **78</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:HistoryViewModel}}, Path=GoToDetailsCommand}" />
+                        </Border.GestureRecognizers>
+                        <Grid RowDefinitions="auto,auto">
+
+                            <Label Text="Karta płatnicza"
+                                   Background="{StaticResource Accent}"
+                                   TextColor="{StaticResource DarkText}"
+                                   Padding="15,0" />
+
+                            <Grid Padding="15" ColumnSpacing="10" ColumnDefinitions="23,*,auto,10" Grid.Row="1">
+                                <Image>
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="FAB"
+                                                         Glyph="{x:Static fab:Icon.CcVisa}"
+                                                         Color="{StaticResource Accent}" />
+                                    </Image.Source>
+                                </Image>
+
+                                <Label Grid.Column="1"
+                                       Text="{Binding .}" />
+                                
+                                <Image Grid.Column="3">
+
+                                    <Image.Source>
+                                        <FontImageSource FontFamily="FAS"
+                                                         Glyph="{x:Static fas:Icon.AngleRight}"
+                                                         Color="{AppThemeBinding Light={StaticResource DarkText}, Dark={StaticResource LightText}}" />
+                                    </Image.Source>
+                                </Image>
+                            </Grid>
+
+                        </Grid>
+
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:shop.ViewModels"
+             x:DataType="viewModels:LoginViewModel"
+             x:Class="shop.Views.Login.LoginPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,auto,auto,auto,auto"
+              VerticalOptions="Center"
+              RowSpacing="15"
+              Padding="25">
+            <Entry Placeholder="Email" />
+            <Entry Grid.Row="1" Placeholder="Hasło" />
+            <Button Grid.Row="2"
+                    Text="Zaloguj"
+                    Command="{Binding LoginCommand}" />
+            <HorizontalStackLayout Grid.Row="3"
+                                   HorizontalOptions="Center"
+                                   Spacing="5">
+                <Label Text="Nie posiadasz konta?"
+                       Style="{StaticResource Footer}" />
+                <Label Text="Zarejestruj się"
+                       Style="{StaticResource Footer}"
+                       FontAttributes="Italic">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToRegisterCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+            <HorizontalStackLayout Grid.Row="4"
+                                   HorizontalOptions="Center"
+                                   Spacing="5">
+                <Label Text="Zapomniałeś hasło?"
+                       Style="{StaticResource Footer}" />
+                <Label Text="Przypomnij hasło"
+                       Style="{StaticResource Footer}"
+                       FontAttributes="Italic">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToResetPasswordCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

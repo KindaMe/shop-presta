@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime"
+             xmlns:viewmodels="clr-namespace:shop.ViewModels"
+             xmlns:fas="clr-namespace:shop.Helpers.FontAwesome.Solid"
+             x:DataType="viewmodels:ItemDetailsViewModel"
+             x:Class="shop.Views.Main.Cart.ItemDetailsPage"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem>
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.Heart}"
+                                 Size="25"
+                                 Color="{StaticResource Red}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <Grid RowDefinitions="auto,*,auto"
+              Margin="20"
+              RowSpacing="20">
+
+            <Border HeightRequest="300" />
+
+            <ScrollView Grid.Row="1">
+                <Label
+                    Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. In imperdiet justo convallis venenatis ultrices. Phasellus mi diam, laoreet sit amet purus non, ornare volutpat neque. Proin sed nibh cursus, congue lorem et, euismod risus. Phasellus molestie porta suscipit. Morbi arcu urna, scelerisque ut nunc suscipit, efficitur sollicitudin leo. Pellentesque pulvinar dolor non magna feugiat, sed scelerisque purus rhoncus. Proin vulputate diam quis aliquet faucibus. Aenean ultricies magna posuere, consequat velit nec, rhoncus libero. Donec imperdiet, augue sit amet vestibulum tempor, sapien ante fringilla augue, a fermentum lorem lorem vel magna. In sit amet molestie neque, at accumsan dui. Curabitur dignissim posuere mauris, sed faucibus elit feugiat vel. Sed imperdiet venenatis velit, ut interdum magna ullamcorper a. " />
+
+            </ScrollView>
+
+            <Grid Grid.Row="2"
+                  ColumnDefinitions="*,*">
+                <Label VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       HorizontalTextAlignment="Center">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Cena:" />
+                            <Span Text="{x:Static system:Environment.NewLine}" />
+                            <Span Text="269.99 PLN" FontAttributes="Bold" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+                <Button Grid.Column="1"
+                        Text="Do koszyka" />
+                <Border BackgroundColor="Transparent"
+                        Grid.ColumnSpan="2"
+                        Padding="0"
+                        Margin="-1" />
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

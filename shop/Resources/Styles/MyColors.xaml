@@ -1,0 +1,22 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Accent">#6CC0EF</Color>
+    <Color x:Key="Red">#DB1212</Color>
+
+    <Color x:Key="DmBackground">#232428</Color>
+    <Color x:Key="LmBackground">#EBEDEF</Color>
+
+    <Color x:Key="DmBackgroundLight">#2B2D31</Color>
+    <Color x:Key="LmBackgroundLight">#F2F3F5</Color>
+
+    <Color x:Key="DmItemBackground">#313338</Color>
+    <Color x:Key="LmItemBackground">#FFFFFF</Color>
+
+    <Color x:Key="LightText">#FFFFFF</Color>
+    <Color x:Key="DarkText">#313338</Color>
+
+    <Color x:Key="LightTextPlaceholder">#A0A0A0</Color>
+    <Color x:Key="DarkTextPlaceholder">#6C6C6C</Color>
+
+</ResourceDictionary>

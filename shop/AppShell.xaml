@@ -1,15 +1,62 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<Shell
-    x:Class="shop.AppShell"
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:shop"
-    Shell.FlyoutBehavior="Disabled"
-    Title="shop">
+<?xml version="1.0" encoding="UTF-8"?>
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+<Shell x:Class="shop.AppShell"
+       xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:fas="clr-namespace:shop.Helpers.FontAwesome.Solid"
+       xmlns:account="clr-namespace:shop.Views.Main.Account"
+       xmlns:cart="clr-namespace:shop.Views.Main.Cart"
+       xmlns:home="clr-namespace:shop.Views.Main.Home"
+       xmlns:favorites="clr-namespace:shop.Views.Main.Favorites"
+       xmlns:categories="clr-namespace:shop.Views.Main.Categories"
+       xmlns:fixesAndWorkarounds="clr-namespace:Maui.FixesAndWorkarounds;assembly=PureWeen.Maui.FixesAndWorkarounds"
+       Shell.FlyoutBehavior="Disabled">
+
+    <TabBar Route="Main">
+
+        <Tab>
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.Home}" />
+            </Tab.Icon>
+            <fixesAndWorkarounds:ShellContentDI ContentTemplate="{DataTemplate home:HomePage}" Route="HomePage" />
+        </Tab>
+
+        <Tab>
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.Search}" />
+            </Tab.Icon>
+            <fixesAndWorkarounds:ShellContentDI ContentTemplate="{DataTemplate categories:CategoryPage}"
+                                                Route="CategoryPage" />
+        </Tab>
+
+        <Tab>
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.ShoppingBasket}" />
+            </Tab.Icon>
+            <fixesAndWorkarounds:ShellContentDI ContentTemplate="{DataTemplate cart:CartPage}" Route="CartPage" />
+        </Tab>
+
+        <Tab>
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.Heart}" />
+            </Tab.Icon>
+            <fixesAndWorkarounds:ShellContentDI ContentTemplate="{DataTemplate favorites:FavoritePage}"
+                                                Route="FavoritePage" />
+        </Tab>
+
+        <Tab>
+            <Tab.Icon>
+                <FontImageSource FontFamily="FAS"
+                                 Glyph="{x:Static fas:Icon.User}" />
+            </Tab.Icon>
+            <fixesAndWorkarounds:ShellContentDI ContentTemplate="{DataTemplate account:AccountPage}"
+                                                Route="AccountPage" />
+        </Tab>
+
+    </TabBar>
 
 </Shell>
